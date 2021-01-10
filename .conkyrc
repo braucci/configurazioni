@@ -43,9 +43,21 @@ color5						= '#FFFF52',
 color6						= '#FF801A',
 }
 
-conky.text = [[
-${color2}${font SonySketchEF:bold:size=14}SYSTEM ${hr 2}${font}
 
+
+conky.text = [[
+
+# ███     ██  █████   ██████   ██████░██       █████  ██████
+#░░██  █ ░██ ██░░░██ ░░░░░░██ ░░░██░ ░██████  ██░░░██░░██░░█
+# ░██ ███░██░███████  ███████   ░██  ░██░░░██░███████ ░██ ░
+# ░████░████░██░░░░  ██░░░░██   ░██  ░██  ░██░██░░░░  ░██
+# ███░ ░░░██░░██████░░████████  ░░██ ░██  ░██░░██████░███
+#░░░    ░░░  ░░░░░░  ░░░░░░░░    ░░  ░░   ░░  ░░░░░░ ░░░
+
+${color2}${font SonySketchEF:bold:size=14}WEATHER ${hr 2}${font}
+${font Open Sans Light:size=9}${color2}${execi 300 curl wttr.in/nap?T0 --silent --max-time 3}${font}
+
+${color2}${font SonySketchEF:bold:size=14}SYSTEM ${hr 2}${font}
 ${font DejaVu Sans Mono:size=2}${execi 130000 screenfetch -L -N | sed 's/^/\t/'|sed 's/ *$//'}
 ${font Open Sans Light:size=9}${voffset -62}${offset 80}${time %d %b %Y }
 ${voffset -15}${offset 80}${exec lsb_release -d | cut -f 3| tr "[:upper:]" "[:lower:]"}
@@ -102,3 +114,4 @@ ${voffset 8}${color2}/dev/sda ${alignr}${color}${fs_used /} / ${fs_size /} ${col
 ${color5}${font Digital:bold:size=14}${time %I:%M:%S}${alignr}${color}${font SonySketchEF:bold:size=14}${time %d %B}, ${time %Y}
 #${color4}${font Digital:bold:size=20}${time %r}${alignr}${color5}${font SonySketchEF:bold:size=18}${time %d %B}, ${color6}${time %Y}
 ]]
+
