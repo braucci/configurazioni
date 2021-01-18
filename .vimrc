@@ -12,9 +12,13 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set fileformat=unix
-
+set laststatus=2
 set nocompatible              " required
 filetype off                  " required
+                                                 
+
+map <F6> {!}par jw72 <%
+
 " set number
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -32,7 +36,9 @@ Plugin 'preservim/nerdtree'
 Plugin 'jaredgorski/spacecamp'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'artanikin/vim-synthwave84'
-
+Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'itchyny/lightline.vim'
+Plugin 'ap/vim-css-color'
 " ...
 
 " All of your Plugins must be added before the following line
@@ -40,6 +46,13 @@ call vundle#end()            " required
 
 filetype plugin indent on    " required
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
+
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+
 
 let g:NERDTreeNodeDelimiter = "\u00a0"
 syntax on
@@ -54,3 +67,5 @@ nnoremap <C-L> <C-W><C-L> "Ctr-L --> Move to the right
 nnoremap <C-H> <C-W><C-H> "Ctr-H --> Move to the left
 " colorscheme spacecamp
 " colorscheme synthwave84
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'evince'

@@ -55,15 +55,15 @@ conky.text = [[
 #░░░    ░░░  ░░░░░░  ░░░░░░░░    ░░  ░░   ░░  ░░░░░░ ░░░
 
 ${color2}${font SonySketchEF:bold:size=14}WEATHER ${hr 2}${font}
-${font Open Sans Light:size=9}${color2}${execi 300 curl wttr.in/nap?T0 --silent --max-time 3}${font}
+${font DejaVu Sans Mono:size=9}${color2}${exec curl wttr.in/nap?T0 --silent --max-time 3}${font}
 
 ${color2}${font SonySketchEF:bold:size=14}SYSTEM ${hr 2}${font}
 ${font DejaVu Sans Mono:size=2}${execi 130000 screenfetch -L -N | sed 's/^/\t/'|sed 's/ *$//'}
-${font Open Sans Light:size=9}${voffset -62}${offset 80}${time %d %b %Y }
-${voffset -15}${offset 80}${exec lsb_release -d | cut -f 3| tr "[:upper:]" "[:lower:]"}
-${voffset 0}${offset 80}${font Open Sans Light:size=9}Edition: ${font Open Sans Light:size=9}${execi 130000 awk -F= '/ID=/{printf $2" "} /RELEASE=/{printf $2" "} /NAME=/{print $2}' /etc/lsb-release}
-${voffset 0}${offset 80}${font Open Sans Light:size=9}Kernel: ${kernel}
-${voffset 0}${offset 80}${font Open Sans Light:size=9}Uptime: $uptime
+${font DejaVu Sans Mono:size=9}${voffset -62}${offset 90}${time %d %b %Y }
+${voffset -15}${offset 90}${exec lsb_release -d | cut -f 3| tr "[:upper:]" "[:lower:]"}
+${voffset 0}${offset 90}${font DejaVu Sans Mono:size=9}Edition: ${font DejaVu Sans Mono:size=9}${execi 130000 awk -F= '/ID=/{printf $2" "} /RELEASE=/{printf $2" "} /NAME=/{print $2}' /etc/lsb-release}
+${voffset 0}${offset 90}${font DejaVu Sans Mono:size=9}Kernel: ${kernel}
+${voffset 0}${offset 90}${font DejaVu Sans Mono:size=9}Uptime: $uptime
 
 #
 
@@ -76,19 +76,19 @@ ${color1}Temp: ${color}${exec sensors | grep 'Core 3'}
 
 ${font SonySketchEF:bold:size=14}${color}NETWORK ${hr 2}${font DejaVu Sans Mono:size=9}
 
-State:${alignr} ${if_existing /sys/class/net/wlp8s0/operstate up}${color FFFFFF}ONLINE${else}${color red}OFFLINE${endif}$color
+State:${alignr} ${if_existing /sys/class/net/wlan0/operstate up}${color FFFFFF}ONLINE${else}${color red}OFFLINE${endif}$color
 ISP: ${alignr} ${execi 6000 curl ipinfo.io/org}
 #Locale: ${alignr} ${execi 6000 curl ipinfo.io/city}, ${execi 6000 curl ipinfo.io/region}, ${execi 6000 curl ipinfo.io/country}
 #${alignr} ${execi 6000 curl ipinfo.io/loc}
-Local IP: ${alignr} ${addr wlp8s0}
+Local IP: ${alignr} ${addr wlan0}
 Public IP: ${alignr} ${execi 600 wget http://ipinfo.io/ip -qO -}
 #Total connections: ${alignr}${tcp_portmon 1 65535 count}
 Ping to 192.168.1.1: $alignr ${texeci 15 output=$(ping -c 10 192.168.1.1); avg=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $5}'` | sed 's/,/./'); mdev=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $7}' | sed 's/ .*//'` | sed 's/,/./'); echo $avg ± $mdev ms}
 Ping to 8.8.8.8: $alignr ${texeci 15 output=$(ping -c 10 8.8.8.8); avg=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $5}'` | sed 's/,/./'); mdev=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $7}' | sed 's/ .*//'` | sed 's/,/./'); echo $avg ± $mdev ms}
 
-Down: ${downspeed wlp8s0} / s ${alignr} Up: ${upspeed wlp8s0} / s
-${downspeedgraph wlp8s0 25,200 ffffff ffffff} ${alignr}${upspeedgraph wlp8s0 25,200 ffffff ffffff}
-Total: ${totaldown wlp8s0} ${alignr}Total: ${totalup wlp8s0}
+Down: ${downspeed wlan0} / s ${alignr} Up: ${upspeed wlan0} / s
+${downspeedgraph wlan0 25,200 ffffff ffffff} ${alignr}${upspeedgraph wlan0 25,200 ffffff ffffff}
+Total: ${totaldown wlan0} ${alignr}Total: ${totalup wlan0}
 #Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768 61000 count}${alignr}
 
 
@@ -114,4 +114,5 @@ ${voffset 8}${color2}/dev/sda ${alignr}${color}${fs_used /} / ${fs_size /} ${col
 ${color5}${font Digital:bold:size=14}${time %I:%M:%S}${alignr}${color}${font SonySketchEF:bold:size=14}${time %d %B}, ${time %Y}
 #${color4}${font Digital:bold:size=20}${time %r}${alignr}${color5}${font SonySketchEF:bold:size=18}${time %d %B}, ${color6}${time %Y}
 ]]
+
 
