@@ -111,7 +111,7 @@ ${voffset 8}${color2}/dev/sda ${alignr}${color}${fs_used /} / ${fs_size /} ${col
 #${color1}eth0 Up: ${color}${upspeedf eth0} ${color}kB/s ${alignr}${color1}Total: ${color}${totalup eth0}
 
 
-${color5}${font Digital:bold:size=14}${time %I:%M:%S}${alignr}${color}${font SonySketchEF:bold:size=14}${time %d %B}, ${time %Y}
+${color5}${font SonySketchEF:bold:size=14}${time %I:%M:%S}${alignr}${color}${font SonySketchEF:bold:size=14}${time %d %B}, ${time %Y}
 #${color4}${font Digital:bold:size=20}${time %r}${alignr}${color5}${font SonySketchEF:bold:size=18}${time %d %B}, ${color6}${time %Y}
 ]]
 
