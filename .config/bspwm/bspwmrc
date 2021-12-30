@@ -25,7 +25,7 @@ insync start &
 /usr/bin/numlockx on &
 conky &
 picom -f &
-
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
