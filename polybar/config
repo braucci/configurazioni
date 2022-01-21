@@ -61,8 +61,8 @@ font-6 = font-logos:pixselsize=12;2
 
 modules-left = bspwm i3
 modules-center = xwindow pacman-updates
-modules-right  = pulseaudio memory cpu  battery temperature xkeyboard wlan eth date gmail geogebra powermenu
-
+; modules-right  = pulseaudio memory cpu  battery temperature xkeyboard wlan eth date bluetooth powermenu
+modules-right  = pulseaudio battery temperature xkeyboard wlan eth date bluetooth powermenu
 separator = |
 tray-position = right
 tray-padding = 2
@@ -70,7 +70,6 @@ tray-padding = 2
 
 ;wm-restack = bspwm
 ;wm-restack = i3
-
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
@@ -469,6 +468,12 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
+
+[module/bluetooth]
+type = custom/script
+exec = rofi-bluetooth --status
+interval = 1
+click-left = rofi-bluetooth &
 
 [module/temperature]
 type = internal/temperature
