@@ -1,0 +1,118 @@
+conky.config = {
+background					= true,
+minimum_height				= 100,
+minimum_width				= 380,
+alignment					= 'mr',
+gap_x						= 3,
+gap_y						= 3,
+own_window				    = true,
+own_window_class			= 'conky',
+own_window_type				= 'desktop',
+own_window_transparent		= true,
+own_window_argb_visual		= true,
+own_window_argb_value		= 0,
+own_window_hints			= 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+cpu_avg_samples				= 2,
+net_avg_samples				= 2,
+diskio_avg_samples			= 10,
+if_up_strictness			= 'address',
+double_buffer				= true,
+no_buffers					= true,
+temperature_unit			= 'celsius',
+update_interval				= 1,
+draw_borders				= false,
+draw_graph_borders			= true,
+draw_shades					= false,
+draw_outline				= false,
+stippled_borders			= 0,
+format_human_readable		= true,
+font						= 'SonySketchEF:size=10',
+use_xft						= true,
+xftalpha					= 1,
+override_utf8_locale		= true,
+short_units					= true,
+use_spacer					= 'none',
+
+default_color				= '#D1ECFF',
+color1						= '#39BBFF',		-- light blue
+color2						= '#8FCFF9',		-- lighter blue
+color3						= '#2CFF00',		-- green
+color4						= '#FF0000',		-- red
+color5						= '#FFFF52',
+color6						= '#FF801A',
+}
+
+
+
+conky.text = [[
+
+# ███     ██  █████   ██████   ██████░██       █████  ██████
+#░░██  █ ░██ ██░░░██ ░░░░░░██ ░░░██░ ░██████  ██░░░██░░██░░█
+# ░██ ███░██░███████  ███████   ░██  ░██░░░██░███████ ░██ ░
+# ░████░████░██░░░░  ██░░░░██   ░██  ░██  ░██░██░░░░  ░██
+# ███░ ░░░██░░██████░░████████  ░░██ ░██  ░██░░██████░███
+#░░░    ░░░  ░░░░░░  ░░░░░░░░    ░░  ░░   ░░  ░░░░░░ ░░░
+
+#${color2}${font SonySketchEF:bold:size=14}WEATHER ${hr 2}${font}
+#${font DejaVu Sans Mono:size=9}${color2}${exec curl wttr.in/nap?T0 --silent --max-time 3}${font}
+
+${color2}${font SonySketchEF:bold:size=14}SYSTEM ${hr 2}${font}
+${font DejaVu Sans Mono:size=2}${execi 130000 screenfetch -L -N | sed 's/^/\t/'|sed 's/ *$//'}
+${font DejaVu Sans Mono:size=9}${voffset -62}${offset 90}${time %d %b %Y }
+${voffset -15}${offset 90}${exec lsb_release -d | cut -f 3| tr "[:upper:]" "[:lower:]"}
+${voffset 0}${offset 90}${font DejaVu Sans Mono:size=9}Edition: ${font DejaVu Sans Mono:size=9}${execi 130000 awk -F= '/ID=/{printf $2" "} /RELEASE=/{printf $2" "} /NAME=/{print $2}' /etc/lsb-release}
+${voffset 0}${offset 90}${font DejaVu Sans Mono:size=9}Kernel: ${kernel}
+${voffset 0}${offset 90}${font DejaVu Sans Mono:size=9}Uptime: $uptime
+
+#
+
+${color1}Kernel: ${alignr}${color}${kernel}
+${color1}Load Average: ${alignr}${color}${loadavg 3} %
+${color1}Temp: ${color}${exec sensors | grep 'Core 0'}
+${color1}Temp: ${color}${exec sensors | grep 'Core 1'}
+${color1}Temp: ${color}${exec sensors | grep 'Core 2'}
+${color1}Temp: ${color}${exec sensors | grep 'Core 3'}
+
+${font SonySketchEF:bold:size=14}${color}NETWORK ${hr 2}${font DejaVu Sans Mono:size=9}
+
+State:${alignr} ${if_existing /sys/class/net/wlan0/operstate up}${color FFFFFF}ONLINE${else}${color red}OFFLINE${endif}$color
+ISP: ${alignr} ${execi 6000 curl ipinfo.io/org}
+#Locale: ${alignr} ${execi 6000 curl ipinfo.io/city}, ${execi 6000 curl ipinfo.io/region}, ${execi 6000 curl ipinfo.io/country}
+#${alignr} ${execi 6000 curl ipinfo.io/loc}
+Local IP: ${alignr} ${addr wlan0}
+Public IP: ${alignr} ${execi 600 wget http://ipinfo.io/ip -qO -}
+#Total connections: ${alignr}${tcp_portmon 1 65535 count}
+Ping to 192.168.1.1: $alignr ${texeci 15 output=$(ping -c 10 192.168.1.1); avg=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $5}'` | sed 's/,/./'); mdev=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $7}' | sed 's/ .*//'` | sed 's/,/./'); echo $avg ± $mdev ms}
+Ping to 8.8.8.8: $alignr ${texeci 15 output=$(ping -c 10 8.8.8.8); avg=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $5}'` | sed 's/,/./'); mdev=$(printf "%0.1f" `echo $output | awk -F '/' 'END {print $7}' | sed 's/ .*//'` | sed 's/,/./'); echo $avg ± $mdev ms}
+
+Down: ${downspeed wlan0} / s ${alignr} Up: ${upspeed wlan0} / s
+${downspeedgraph wlan0 25,200 ffffff ffffff} ${alignr}${upspeedgraph wlan0 25,200 ffffff ffffff}
+Total: ${totaldown wlan0} ${alignr}Total: ${totalup wlan0}
+#Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768 61000 count}${alignr}
+
+
+${color5}CPU Load: ${alignr}${color}${cpubar cpu0 20,240}
+${voffset 8}${color2}${top name 1} ${alignr}${top pid 1} ${color}${top cpu 1} %
+${color2}${top name 2} ${alignr}${top pid 2} ${color}${top cpu 2} %
+${color2}${top name 3} ${alignr}${top pid 3} ${color}${top cpu 3} %
+
+${color5}RAM Usage: ${alignr}${color}${membar 20,240}
+${voffset 8}${color2}${top_mem name 1} ${alignr}${color}${top_mem mem 1} %
+${color2}${top_mem name 2} ${alignr}${color}${top_mem mem 2} %
+${color2}${top_mem name 3} ${alignr}${color}${top_mem mem 3} %
+
+${color5}Disk Access: ${alignr}${color}${diskiograph /dev/sda 20,240 FFFF52 FF801A -t}
+${voffset 8}${color2}/dev/sda ${alignr}${color}${fs_used /} / ${fs_size /} ${color3}($fs_used_perc%)
+
+#${color2}${font SonySketchEF:bold:size=14}NETWORK ${hr 2}${font}
+#${voffset 8}${color1}IP Address: ${alignr}${color}${addrs eth0}
+#${color1}eth0 Down: ${color}${downspeedf eth0} ${color}kB/s ${alignr}${color1}Total: ${color}${totaldown #eth0}
+#${color1}eth0 Up: ${color}${upspeedf eth0} ${color}kB/s ${alignr}${color1}Total: ${color}${totalup eth0}
+
+
+${color5}${font SonySketchEF:bold:size=14}${time %I:%M:%S}${alignr}${color}${font SonySketchEF:bold:size=14}${time %d %B}, ${time %Y}
+#${color4}${font Digital:bold:size=20}${time %r}${alignr}${color5}${font SonySketchEF:bold:size=18}${time %d %B}, ${color6}${time %Y}
+]]
+
+
