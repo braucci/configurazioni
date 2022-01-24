@@ -1,46 +1,32 @@
 #! /bin/sh
 
-
-#  ██
-# ░██              ██████
-# ░██       ██████░██░░░██ ███     ██ ██████████
-# ░██████  ██░░░░ ░██  ░██░░██  █ ░██░░██░░██░░██
-# ░██░░░██░░█████ ░██████  ░██ ███░██ ░██ ░██ ░██
-# ░██  ░██ ░░░░░██░██░░░   ░████░████ ░██ ░██ ░██
-# ░██████  ██████ ░██      ███░ ░░░██ ███ ░██ ░██
-# ░░░░░   ░░░░░░  ░░      ░░░    ░░░ ░░░  ░░  ░░
-
-
 $HOME/.config/polybar/launch.sh &
-
 feh --bg-scale ~/.config/bspwm/desktop/heineken.jpg &
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 
+#### Start some programs
 
-### start some programs
-
-mathpix-snipping-tool &
-insync start &
-/usr/bin/numlockx on &
 conky &
 picom -f &
+insync start &
+dunst &
+/opt/PB\ for\ Desktop/pb-for-desktop &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc config border_width         2
-bspc config window_gap           3
+bspc config window_gap          12
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-#bspc rule -a firefox desktop='^2' follow=on
-bspc rule -a Spotify desktop='^3' state=floating follow=on
-bspc rule -a WhatsDesk desktop='^4' state=floating follow=on
 
+bspc rule -a whatsdesk desktop='^2' state=floating follow=on
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-
