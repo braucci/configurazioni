@@ -61,7 +61,7 @@ font-6 = font-logos:pixselsize=12;2
 
 modules-left = bspwm i3
 modules-center = xwindow pacman-updates
-modules-right  = pulseaudio battery temperature xkeyboard wlan eth date bluetooth gmail  powermenu
+modules-right  = pulseaudio battery temperature xkeyboard wlan eth date calendar bluetooth gmail  powermenu
 
 separator = |
 tray-position = right
@@ -114,6 +114,14 @@ exec = ~/.config/polybar/gmail/launch.py
 tail = true
 click-left = xdg-open https://mail.google.com
 
+
+[module/calendar]
+type = custom/script
+label = " "
+exec = echo Calendar
+click-left = ~/.config/polybar/calendar curr
+scroll-up = ~/.config/polybar/calendar next
+scroll-down = ~/.config/polybar/calendar prev
 
 [module/gmail_old]
 type = custom/text
