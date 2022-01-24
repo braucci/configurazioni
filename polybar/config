@@ -61,8 +61,8 @@ font-6 = font-logos:pixselsize=12;2
 
 modules-left = bspwm i3
 modules-center = xwindow pacman-updates
-; modules-right  = pulseaudio memory cpu  battery temperature xkeyboard wlan eth date bluetooth powermenu
-modules-right  = pulseaudio battery temperature xkeyboard wlan eth date bluetooth powermenu
+modules-right  = pulseaudio battery temperature xkeyboard wlan eth date bluetooth gmail  powermenu
+
 separator = |
 tray-position = right
 tray-padding = 2
@@ -70,6 +70,7 @@ tray-padding = 2
 
 ;wm-restack = bspwm
 ;wm-restack = i3
+
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
@@ -526,4 +527,4 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosini
+; vim:ft=dosin
