@@ -61,8 +61,8 @@ font-6 = font-logos:pixselsize=12;2
 
 modules-left = bspwm i3
 modules-center = xwindow pacman-updates
-modules-right  = pulseaudio battery temperature xkeyboard wlan eth date calendar bluetooth gmail  powermenu
-
+; modules-right  = pulseaudio memory cpu  battery temperature xkeyboard wlan eth date bluetooth powermenu
+modules-right  = pulseaudio battery temperature xkeyboard wlan eth date imponibile gmail bluetooth powermenu
 separator = |
 tray-position = right
 tray-padding = 2
@@ -70,7 +70,6 @@ tray-padding = 2
 
 ;wm-restack = bspwm
 ;wm-restack = i3
-
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
@@ -114,6 +113,11 @@ exec = ~/.config/polybar/gmail/launch.py
 tail = true
 click-left = xdg-open https://mail.google.com
 
+[module/imponibile]
+type = custom/script
+format-prefix = " "
+exec = echo Imp
+click-left = ~/.config/polybar/imp/QtImponibile.py
 
 [module/calendar]
 type = custom/script
@@ -122,6 +126,7 @@ exec = echo Calendar
 click-left = ~/.config/polybar/calendar curr
 scroll-up = ~/.config/polybar/calendar next
 scroll-down = ~/.config/polybar/calendar prev
+
 
 [module/gmail_old]
 type = custom/text
@@ -535,4 +540,4 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-; vim:ft=dosin
+; vim:ft=dosini
