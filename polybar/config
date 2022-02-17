@@ -51,18 +51,23 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Droid Sans Mono:style=Regular:pixelsize=10;2
-font-1 = unifont:fontformat=truetype:size=14:antialias=false;2
-font-2 = siji:style=Regular:pixelsize=24;2
+;font-0 = "JetBrains Mono Nerd Font:style=Medium:size=10;2"
+;font-1 = "JetBrains Mono Nerd Font:style=Bold:size=10;2"
+font-0 =  DejaVuSansMono Nerd Font:size=9
+font-1 = DejaVu Sans Mono wifi ramp:size=10
+font-2 = "JetBrainsMono Nerd Font:size=19;5"
 font-3 = Font Awesome 5 Free:pixelsize=12;2
 font-4 = Font Awesome 5 Free Solid:pixelsize=12;2
 font-5 = Font Awesome 5 Brands:pixelsize=12;2
-font-6 = font-logos:pixselsize=12;2
+;font-6 = font-logos:pixselsize=12;2
+;font-3 = "Material Icons Outlined:9;4"
+;font-4 = "Material Icons Round:9;4"
+;font-5 = "Source Han Sans CN:size=9;2"
 
 modules-left = bspwm i3
 modules-center = xwindow pacman-updates
 ; modules-right  = pulseaudio memory cpu  battery temperature xkeyboard wlan eth date bluetooth powermenu
-modules-right  = pulseaudio battery temperature xkeyboard wlan eth date imponibile gmail bluetooth powermenu
+modules-right  = pulseaudio battery temperature xkeyboard wlan eth date gmail bluetooth powermenu
 separator = |
 tray-position = right
 tray-padding = 2
@@ -355,11 +360,19 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+;ramp-signal-0 = 
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-3 = 
+;ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-5 = 
+
+
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -541,3 +554,4 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
+
