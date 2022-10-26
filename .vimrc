@@ -21,29 +21,30 @@ map <F6> {!}par jw72 <%
 
 " set number
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 
+call plug#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
-Plugin 'preservim/nerdtree'
-Plugin 'jaredgorski/spacecamp'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'artanikin/vim-synthwave84'
-Plugin 'xuhdev/vim-latex-live-preview'
-Plugin 'itchyny/lightline.vim'
-Plugin 'ap/vim-css-color'
+Plug 'preservim/nerdtree'
+Plug 'jaredgorski/spacecamp'
+Plug 'jiangmiao/auto-pairs'
+Plug 'artanikin/vim-synthwave84'
+Plug 'xuhdev/vim-latex-live-preview'
+Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-css-color'
 " ...
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-
+"call vundle#end()            " required
+call plug#end()
 filetype plugin indent on    " required
 nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
